@@ -3,6 +3,8 @@ package hs.kr.dgsw.treamprototype.global.security.jwt;
 import hs.kr.dgsw.treamprototype.global.properties.JwtProperties;
 import hs.kr.dgsw.treamprototype.domain.auth.domain.RefreshToken;
 import hs.kr.dgsw.treamprototype.global.redis.RedisService;
+import hs.kr.dgsw.treamprototype.global.security.jwt.exception.ExpiredTokenException;
+import hs.kr.dgsw.treamprototype.global.security.jwt.exception.InvalidTokenException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -71,5 +73,20 @@ public class JwtProvider {
         }
 
         return token;
+    }
+
+    public Claims validateToken(String token) {
+        try {
+            return Jwts.parserBuilder()
+                    .setSigningKey(getSigningKey(jwtProperties.getAccessKey()))
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody();
+        } catch (ExpiredTokenException e) {
+            throw ExpiredTokenException.EXCEPTION;
+        } catch (Exception e) {
+            throw InvalidTokenException.EXCEPTION;
+        }
+
     }
 }
