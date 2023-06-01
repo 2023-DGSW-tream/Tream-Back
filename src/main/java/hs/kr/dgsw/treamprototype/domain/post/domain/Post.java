@@ -2,14 +2,16 @@ package hs.kr.dgsw.treamprototype.domain.post.domain;
 
 import hs.kr.dgsw.treamprototype.domain.category.domain.Category;
 import hs.kr.dgsw.treamprototype.global.entity.BaseTimeEntity;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
-@NoArgsConstructor
+@Getter
+@Builder
+@NoArgsConstructor @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Post extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,9 +31,7 @@ public class Post extends BaseTimeEntity {
         categories.add(category);
     }
 
-    @Builder
-    public Post(Long id, String title, String subTitle, String detailContent) {
-        this.id = id;
+    public void updatePost(String title, String subTitle, String detailContent) {
         this.title = title;
         this.subTitle = subTitle;
         this.detailContent = detailContent;
