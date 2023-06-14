@@ -1,5 +1,6 @@
-package hs.kr.dgsw.treamprototype.global.security.jwt;
+package hs.kr.dgsw.treamprototype.global.lib.jwt;
 
+import hs.kr.dgsw.treamprototype.global.lib.jwt.enums.JwtType;
 import hs.kr.dgsw.treamprototype.global.properties.JwtProperties;
 import hs.kr.dgsw.treamprototype.domain.auth.domain.RefreshToken;
 import hs.kr.dgsw.treamprototype.global.redis.RedisService;
@@ -23,11 +24,6 @@ public class JwtProvider {
 
     private final JwtProperties jwtProperties;
 
-
-    private Key getSigningKey(String secretKey) {
-        byte[] keyBytes = secretKey.getBytes(StandardCharsets.UTF_8);
-        return Keys.hmacShaKeyFor(keyBytes);
-    }
 
     public String createToken(String email, JwtType type) {
         Claims claims = Jwts.claims();
@@ -58,7 +54,7 @@ public class JwtProvider {
                 .setClaims(claims)
                 .setIssuedAt(now)
                 .setExpiration(new Date(now.getTime() + exp))
-                .signWith(getSigningKey(secretKey), SignatureAlgorithm.HS256)
+                .signWith(jwtProperties.getSigningKey(secretKey), SignatureAlgorithm.HS256)
                 .compact();
 
         if (type.equals(JwtType.REFRESH)) {
