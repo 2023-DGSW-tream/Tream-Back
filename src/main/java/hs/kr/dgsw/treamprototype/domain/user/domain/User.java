@@ -1,5 +1,6 @@
 package hs.kr.dgsw.treamprototype.domain.user.domain;
 
+import hs.kr.dgsw.treamprototype.domain.user.domain.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,5 +23,5 @@ public class User {
 
     private String email;
 
-
+    private Role role;
 }
