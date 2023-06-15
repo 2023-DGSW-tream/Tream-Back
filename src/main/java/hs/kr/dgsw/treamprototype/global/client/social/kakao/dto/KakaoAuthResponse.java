@@ -1,4 +1,4 @@
-package hs.kr.dgsw.treamprototype.global.client.kakao.dto;
+package hs.kr.dgsw.treamprototype.global.client.social.kakao.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

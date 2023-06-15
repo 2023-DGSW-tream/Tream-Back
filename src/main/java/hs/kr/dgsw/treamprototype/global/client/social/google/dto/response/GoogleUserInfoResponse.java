@@ -1,4 +1,4 @@
-package hs.kr.dgsw.treamprototype.global.client.google.dto.response;
+package hs.kr.dgsw.treamprototype.global.client.social.google.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

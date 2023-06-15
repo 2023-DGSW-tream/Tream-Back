@@ -1,7 +1,7 @@
-package hs.kr.dgsw.treamprototype.global.client.kakao;
+package hs.kr.dgsw.treamprototype.global.client.social.kakao;
 
 import hs.kr.dgsw.treamprototype.global.client.FeignLogConfigure;
-import hs.kr.dgsw.treamprototype.global.client.kakao.dto.KakaoAuthResponse;
+import hs.kr.dgsw.treamprototype.global.client.social.kakao.dto.KakaoAuthResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

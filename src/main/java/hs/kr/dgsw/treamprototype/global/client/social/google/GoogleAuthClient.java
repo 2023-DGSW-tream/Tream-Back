@@ -1,7 +1,7 @@
-package hs.kr.dgsw.treamprototype.global.client.google;
+package hs.kr.dgsw.treamprototype.global.client.social.google;
 
 import hs.kr.dgsw.treamprototype.domain.auth.strategy.dto.request.SocialAuthRequest;
-import hs.kr.dgsw.treamprototype.global.client.google.dto.response.GoogleTokenResponse;
+import hs.kr.dgsw.treamprototype.global.client.social.google.dto.response.GoogleTokenResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

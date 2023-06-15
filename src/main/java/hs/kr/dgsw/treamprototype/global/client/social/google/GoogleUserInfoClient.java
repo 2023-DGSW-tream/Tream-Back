@@ -1,6 +1,7 @@
-package hs.kr.dgsw.treamprototype.global.client.google;
+package hs.kr.dgsw.treamprototype.global.client.social.google;
 
-import hs.kr.dgsw.treamprototype.global.client.google.dto.response.GoogleUserInfoResponse;
+import hs.kr.dgsw.treamprototype.global.client.social.dto.response.UserInfoResponse;
+import hs.kr.dgsw.treamprototype.global.client.social.google.dto.response.GoogleUserInfoResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
