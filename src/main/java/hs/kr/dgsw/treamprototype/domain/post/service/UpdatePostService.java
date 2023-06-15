@@ -6,6 +6,7 @@ import hs.kr.dgsw.treamprototype.domain.post.domain.Post;
 import hs.kr.dgsw.treamprototype.domain.post.domain.repository.PostRepository;
 import hs.kr.dgsw.treamprototype.domain.post.exception.NotFoundPostException;
 import hs.kr.dgsw.treamprototype.domain.post.presentation.dto.request.PostRequest;
+import hs.kr.dgsw.treamprototype.domain.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,10 +25,13 @@ public class UpdatePostService {
     @Transactional
     public void execute(
             Long id,
-            PostRequest request
+            PostRequest request,
+            User user
     ) {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> NotFoundPostException.EXCEPTION);
+
+        post.matchesUser(user);
 
         categoryRepository.deleteCategoryByPost_Id(id);
         categoryRepository.flush();

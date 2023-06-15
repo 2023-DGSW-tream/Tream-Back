@@ -4,6 +4,8 @@ import hs.kr.dgsw.treamprototype.domain.category.domain.Category;
 import hs.kr.dgsw.treamprototype.domain.post.presentation.dto.request.PostRequest;
 import hs.kr.dgsw.treamprototype.domain.post.domain.Post;
 import hs.kr.dgsw.treamprototype.domain.post.domain.repository.PostRepository;
+import hs.kr.dgsw.treamprototype.domain.user.domain.User;
+import hs.kr.dgsw.treamprototype.domain.user.domain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,13 +15,19 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class CreatePostService {
 
     private final PostRepository postRepository;
 
-    @Transactional
-    public void execute(PostRequest request) {
+    private final UserRepository userRepository;
+
+
+    public void execute(
+            PostRequest request,
+            final User user
+    ) {
         Post post = Post.builder()
                         .title(request.getTitle())
                         .subTitle(request.getSubTitle())
@@ -33,6 +41,9 @@ public class CreatePostService {
             post.addCategory(c);
         }
 
-        postRepository.save(post);
+        final Post savedPost = postRepository.save(post);
+
+        user.addPost(savedPost);
+        userRepository.save(user);
     }
 }
